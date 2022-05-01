@@ -7,9 +7,9 @@ function App() {
   const [state, setState] = useState([])
 const [page,Setpage] = useState(PAGE_NUMBER)
 useEffect(()=>{
-fetch(`https://fakestoreapi.com/products?page=${page}&size=5`)
+fetch(`https://api.instantwebtools.net/v1/passenger?page=${page}&size=25`)
 .then(res=>res.json())
-.then(json=>setState([...state, ...json]))
+.then(json=>setState([...state, ...json.data]))
 },[page])
 
 const scrollToEnd = ()=>{
@@ -27,7 +27,7 @@ window.onscroll = function(){
     <div className="App">
      {state.length>0 && state.map((el,i)=>{
        <div key={i} className={'container'}>  
-       <h4>name:{el.title}</h4>
+       <h4>name:{el.name}</h4>
        
         </div>
      })}
